@@ -1,4 +1,5 @@
 export const API = "https://dirmatech-backend.vercel.app/api";
+export const MY_API = "https://dirmatech-backend.vercel.app/api";
 export const DOMAIN = "https://dirmatech.com";
               
 
