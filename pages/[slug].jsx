@@ -215,7 +215,8 @@ const SingleBlogPost = ({ blog, errorCode }) => {
 
 export async function getStaticPaths() {
     const slugs = await getAllBlogSlugs();
-    const excludedSlugs = ['/admin/edit-blogs', '/admin/web-stories/create-story', '/admin/web-stories/all-stories', '/admin/category', 'admin/add-blog', '/sitemap.xml', 'web-story-sitemap.xml', '/feeds.xml'];
+    // const excludedSlugs = ['/admin/edit-blogs', '/admin/web-stories/create-story', '/admin/web-stories/all-stories', '/admin/category', 'admin/add-blog', '/sitemap.xml', 'web-story-sitemap.xml', '/feeds.xml'];
+     const excludedSlugs = ['/adminjkh147420']
     const filteredSlugs = slugs.filter((slugObject) => !excludedSlugs.includes(slugObject.slug));
     const paths = filteredSlugs.map((slugObject) => ({ params: { slug: slugObject.slug } }));
     return { paths, fallback: "blocking" };
