@@ -26,6 +26,9 @@ body{
   max-width: 98% !important;
 }
 
+.sun-editor .se-wrapper .se-wrapper-inner{
+  height: 100% !important;
+}
 
 .postcontent ul{
   margin-bottom: 40px;
@@ -38,12 +41,6 @@ body{
   list-style: decimal;
 }
 
-@media screen and (max-width:480px){
-  .postcontent table{
-   overflow-x: auto;
-   display: block;
-  }
-}
 
 
 
@@ -77,6 +74,28 @@ body{
   margin-bottom: 50px;
 }
 
+.postcontent li {
+  font-size: 16.5px;
+  margin-left: 30px;
+  word-spacing: 1.5px;
+  line-height: 28px;
+  margin-bottom: 20px;
+}
+
+@media screen and (max-width:480px){
+  .postcontent table{
+   overflow-x: auto;
+   display: block;
+  }
+}
+
+@media screen and (max-width:600px){
+  .postcontent p{
+   font-size: 16.5px;
+   line-height: 30px;
+   word-spacing: 1.5px;
+  }
+}
 
 .postcontent p a {
   text-decoration: none;
@@ -85,32 +104,32 @@ body{
 
 
 .postcontent h1, .postcontent h2{
-  margin-bottom: 10px !important;
-  margin-top: 10px !important;
-  font-weight: 700 !important;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  font-weight: 700;
 }
 
 .postcontent h1 {
-  font-size: 33px !important;
+  font-size: 33px;
 }
 
 .postcontent h2, .postcontent h2 span {
-  font-size: 30px !important;
+  font-size: 30px;
   word-spacing: 1.7px;
 }
 
 .postcontent h3 {
-  margin-top: 10px !important;
-  font-size: 21px !important;
-  font-weight: 700 !important;
+  margin-top: 10px;
+  font-size: 21px;
+  font-weight: 700;
 }
 
 
 
 .postcontent h4, .postcontent h5, .postcontent h6{
-  font-size: 20px !important;
-  margin-bottom: 10px !important;
-  font-weight: 700 !important;
+  font-size: 20px;
+  margin-bottom: 10px;
+  font-weight: 700;
 }
 
 
@@ -140,13 +159,7 @@ body{
 }
 
 
-.postcontent li {
-  font-size: 16.5px !important;
-  margin-left: 30px;
-  word-spacing: 1.5px !important;
-  line-height: 28px !important;
-  margin-bottom: 20px;
-}
+
 
 
 .dark .postcontent h2 {color: whitesmoke;}
