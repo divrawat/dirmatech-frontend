@@ -10,21 +10,21 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { ImLinkedin } from "react-icons/im";
 import { FaInstagramSquare } from "react-icons/fa";
-import { FaGithub } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa"; 
 
 
-const SingleBlog0 = ({ blog, errorCode }) => {
+const SingleBlogPost = ({ blog, errorCode }) => {
 
     if (errorCode) {
         return (
             <>
                 <Navbar />
-                <div>
+                <div className='dark:bg-[#090909] dark:text-white'>
                     <br />
                     <div className="flex justify-center items-center h-[70vh]">
                         <img src="/404.jpg" className="max-w-full max-h-full" alt="" />
                     </div>
-                    <div className=' text-center font-bold text-5xl mb-10'>Page Not Found</div>
+                    <div className=' text-center font-bold text-5xl mt-5 pb-10'>Page Not Found</div>
                 </div>
                 <Footer />
             </>
@@ -64,6 +64,35 @@ const SingleBlog0 = ({ blog, errorCode }) => {
 
     const formattedDate = blog.formattedDate;
 
+
+    const schema =
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": `${DOMAIN}`
+        },
+        "headline": `${blog.title}`,
+        "description":  `${blog.mdesc}`,
+        "image": `${blog.photo}`,  
+        "author": {
+          "@type": "Person",
+          "name": `${blog.postedBy.name}`,
+          "url": `${DOMAIN}/profile/${blog.postedBy.username}`
+        },  
+        "publisher": {
+          "@type": "Organization",
+          "name": {APP_NAME},
+          "logo": {
+            "@type": "ImageObject",
+            "url": `${DOMAIN}/newlogo.png}`
+          }
+        },
+        "datePublished": {formattedDate},
+        "dateModified": {formattedDate}
+      }
+
     const head = () => (
         <Head>
             <title >{`${blog.title} - ${APP_NAME}`}</title>
@@ -80,6 +109,7 @@ const SingleBlog0 = ({ blog, errorCode }) => {
             <meta property="og:image:type" content="image/jpg" />
             <meta property="article:published_time" content={blog.date} />
             <meta property="article:modified_time" content={blog.date} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
         </Head>
     );
 
@@ -92,14 +122,14 @@ const SingleBlog0 = ({ blog, errorCode }) => {
         <>
             {head()}
             <Navbar />
-            <main className=' dark:bg-[#10141c] dark:text-[#cecdcd]'>
-                <div className='max-w-[1000px] mx-auto p-5'>
+            <main className='  dark:bg-[#131314] dark:text-[#eae9e9]'>
+                <div className='max-w-[950px] mx-auto p-5'>
                     <article>
 
                         <section >
                             <section className='mx-auto'>
 
-                                {user && isAuth().role === 1 && (<div className='flex justify-end'><a className='bg-[black] py-1 px-3 font-bold rounded hover:scale-105 transition-transform text-[yellow]' href={`${DOMAIN}/admin/blog/${blog.slug}`}>Edit</a></div>)}
+                                {user && isAuth().role === 1 && (<div className='flex justify-end'><a className='bg-[#28113f] dark:bg-[#626161] py-1 px-3 font-bold rounded hover:scale-105 transition-transform text-[#89f379]' href={`${DOMAIN}/admin/blog/${blog.slug}`}>Edit</a></div>)}
 
                                 <header className='text-center'>
                                     <h1 className='font-extrabold md:text-4xl text-3xl mb-3 mt-5 dark:text-[whitesmoke]' style={{ wordSpacing: "5px" }}>{blog.title}</h1>
@@ -151,7 +181,7 @@ const SingleBlog0 = ({ blog, errorCode }) => {
 
 
 
-            <section className='dark:bg-[#0c1016] dark:text-[whitesmoke]'>
+            <section className='dark:bg-[#10141c] dark:text-[whitesmoke]'>
                 <br/><br/><br/>
 
                 <div className='border-2 border-dashed border-[grey] md:w-[800px] md:mx-auto mx-5 sm:p-8 p-4 rounded'>
@@ -185,7 +215,7 @@ const SingleBlog0 = ({ blog, errorCode }) => {
 
 export async function getStaticPaths() {
     const slugs = await getAllBlogSlugs();
-    const excludedSlugs = ['/admin/edit-blogs', '/admin/web-stories/create-story', '/admin/web-stories/all-stories', '/admin/category', 'admin/add-blog'];
+    const excludedSlugs = ['/admin/edit-blogs', '/admin/web-stories/create-story', '/admin/web-stories/all-stories', '/admin/category', 'admin/add-blog', '/sitemap.xml', 'web-story-sitemap.xml', '/feeds.xml'];
     const filteredSlugs = slugs.filter((slugObject) => !excludedSlugs.includes(slugObject.slug));
     const paths = filteredSlugs.map((slugObject) => ({ params: { slug: slugObject.slug } }));
     return { paths, fallback: "blocking" };
@@ -209,4 +239,4 @@ export async function getStaticProps({ params }) {
     }
 }
 
-export default SingleBlog0;
+export default SingleBlogPost;

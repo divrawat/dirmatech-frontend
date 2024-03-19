@@ -18,6 +18,8 @@ const StoryUpdate = () => {
         formData: new FormData(),
         title: '',
         coverphoto: '',
+        coverphotoheight: '',
+        coverphotowidth: '',
         description: '',
         slug: '',
         link: '',
@@ -28,7 +30,7 @@ const StoryUpdate = () => {
         slides: [],
     });
 
-    const { error, success, formData, publishstory, title, coverphoto, description, slug, slides, link, lastheading, lastimage, ads } = values;
+    const { error, success, formData, publishstory, title, coverphoto, coverphotoheight, coverphotowidth, description, slug, slides, link, lastheading, lastimage, ads } = values;
     const token = getCookie('token');
 
     useEffect(() => {
@@ -69,14 +71,14 @@ const StoryUpdate = () => {
                     } else if (isAuth()?.role == 1) { Router.push(`/admin`); }
                     else if (isAuth()?.role !== 1) { Router.push(`/`); }
                 } else {
-                    setValues({ ...values, title: data?.title, description: data?.description, slug: data?.slug, ads: data?.ads, coverphoto: data?.coverphoto, link: data?.link, lastheading: data?.lastheading, lastimage: data?.lastimage, slides: data?.slides });
+                    setValues({ ...values, title: data?.title, description: data?.description, slug: data?.slug, ads: data?.ads, coverphoto: data?.coverphoto, coverphotowidth: data?.coverphotowidth, coverphotoheight: data?.coverphotoheight, link: data?.link, lastheading: data?.lastheading, lastimage: data?.lastimage, slides: data?.slides });
                 }
             });
         }
     };
 
     const handleAddSlide = () => {
-        const updatedSlides = [...slides, { image: '', heading: '', paragraph: '', height:'', width:'' }];
+        const updatedSlides = [...slides, { image: '', heading: '', paragraph: '', height: '', width: '' }];
         setValues({ ...values, slides: updatedSlides });
         formData.set('slides', JSON.stringify(updatedSlides));
     };
@@ -115,10 +117,18 @@ const StoryUpdate = () => {
                             {showError()}
                             {showSuccess()}
                             <button type='submit' className="px-5 py-2 rounded bg-[black] text-[15px] mb-5 font-bold tracking-wider text-white hover:opacity-50">{publishstory}</button>
-                           
+
+                            <div className='mb-2'>640w X 853h</div>
                             <div>
                                 <input style={boxShadowStyle} className="p-[8px] text-[14px] w-[300px] mb-[25px] pl-[15px] h-[35px] outline-none rounded" placeholder='Cover Photo Link' value={coverphoto} onChange={handletitle("coverphoto")} />
                             </div>
+
+                            <div className='flex gap-3'>
+                                <input className="p-3 w-[100px] rounded outline-none text-sm" style={boxShadowStyle} type="number" value={coverphotowidth} onChange={handletitle("coverphotowidth")} placeholder="Width" /><span className='pt-2'>px</span>
+                                <input className="p-3 w-[100px] rounded outline-none text-sm" style={boxShadowStyle} type="number" value={coverphotoheight} onChange={handletitle("coverphotoheight")} placeholder="Height" /> <span className='pt-2'>px</span>
+                            </div>
+
+
 
                             <div className="mt-[30px]">
                                 <textarea style={boxShadowStyle} className='text-[14px] w-[300px] h-[150px] p-[8px] border-none outline-none pl-[15px] rounded' placeholder='Description' value={description} onChange={handletitle("description")} />
@@ -126,9 +136,9 @@ const StoryUpdate = () => {
 
                             <input style={boxShadowStyle} className="p-[8px] text-[14px] w-[300px] h-[35px] mt-[25px] border-none outline-none pl-[15px] rounded" value={slug} placeholder='slug' onChange={handletitle("slug")} />
                             <br /><br /> <br /><br />
-                          
+
                             <input style={boxShadowStyle} className="p-[8px] text-[14px] w-[300px] h-[35px] mt-[25px] border-none outline-none pl-[15px] rounded " value={ads} placeholder='Ads ?' onChange={handletitle("ads")} />
-                            
+
                             <br /><br /> <br /><br />
                             <input style={boxShadowStyle} className="p-[8px] text-[14px] w-[300px] h-[35px] mt-[25px] border-none outline-none pl-[15px] rounded " value={link} placeholder='Swipe Up Link' onChange={handletitle("link")} />
                             <input style={boxShadowStyle} className="p-[8px] text-[14px] w-[300px] h-[35px] mt-[25px] border-none outline-none pl-[15px] rounded " value={lastimage} placeholder='Lastimage' onChange={handletitle("lastimage")} />
@@ -150,16 +160,16 @@ const StoryUpdate = () => {
                                         <div className='font-bold mb-2'>Heading</div>
                                         <input style={boxShadowStyle} className='text-[14px] block p-[7px] pl-[12px] mb-[25px] w-[80%] border-none outline-none rounded' type="text" placeholder="Heading" value={slide?.heading} onChange={handleSlideChange(index, 'heading')} />
                                         <textarea style={boxShadowStyle} className='text-[14px] block p-[7px] pl-[12px] h-[100px] mb-[25px] w-[80%] border-none outline-none rounded' placeholder="Paragraph" value={slide?.paragraph} onChange={handleSlideChange(index, 'paragraph')} />
-                                        
+
                                         <div className='flex gap-3'>
-                                        <input className="p-3 w-[100px] rounded outline-none text-sm" style={boxShadowStyle} type="number" placeholder="Height" value={slide.height} onChange={handleSlideChange(index, 'height')} /> <span className='pt-2'>px</span>
-                                        <input className="p-3 w-[100px] rounded outline-none text-sm" style={boxShadowStyle} type="number" placeholder="Width" value={slide.width} onChange={handleSlideChange(index, 'width')} /><span className='pt-2'>px</span>
-                                    </div>
-                                        
-                                        
+                                            <input className="p-3 w-[100px] rounded outline-none text-sm" style={boxShadowStyle} type="number" placeholder="Height" value={slide.height} onChange={handleSlideChange(index, 'height')} /> <span className='pt-2'>px</span>
+                                            <input className="p-3 w-[100px] rounded outline-none text-sm" style={boxShadowStyle} type="number" placeholder="Width" value={slide.width} onChange={handleSlideChange(index, 'width')} /><span className='pt-2'>px</span>
+                                        </div>
+
+
                                         <div className="ml-[800px] mt-[-165px]">
                                             <button type="button" onClick={handleRemoveSlide(index)} className=" bg-[black] p-[8px] text-white outline-none cursor-pointer mt-[10px] text-[18px] font-extrabold rounded hover:opacity-70 "> <MdDelete /> </button>
-                                        </div>                                        
+                                        </div>
                                     </div>
                                 ))}
                                 <button className="ml-[800px] mt-[-165px] bg-[black] p-[8px] hover:opacity-70 text-white outline-none cursor-pointer text-[17px] font-extrabold rounded" type="button" onClick={handleAddSlide}> <FaPlus /> </button>
@@ -178,10 +188,10 @@ const StoryUpdate = () => {
     return (
         <>
             {head()}
-            {isAuth()?.role==1 && (updateStoryForm())}
+            {isAuth()?.role == 1 && (updateStoryForm())}
         </>
     );
 };
 
 // export default StoryUpdate;
- export default dynamic(() => Promise.resolve(StoryUpdate), { ssr: false })
+export default dynamic(() => Promise.resolve(StoryUpdate), { ssr: false })

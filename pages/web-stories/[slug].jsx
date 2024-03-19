@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { singleStory, allslugs } from "../../actions/story";
+import { singleStory, webstoryslugs } from "../../actions/story";
 import { API, DOMAIN, APP_NAME, MY_API } from "../../config";
 import Script from 'next/script';
 import { format } from 'date-fns';
@@ -30,8 +30,8 @@ const Stories = ({ story, errorCode }) => {
         "name": `${APP_NAME}`,
         "logo": {
           "@type": "ImageObject",
-          "@id": "https://www.liquorprices.in/#logo",
-          "url": "https://www.liquorprices.in/wp-content/uploads/2023/06/cropped-Logo-1.png",
+          "@id": `${DOMAIN}/#logo`,
+          "url": `${DOMAIN}/logo-96x96.png`,
           "width": "96",
           "height": "96"
         }
@@ -45,7 +45,7 @@ const Stories = ({ story, errorCode }) => {
         "publisher": {
           "@id": `${DOMAIN}/#organization`
         },
-        "inLanguage": "pa"
+        "inLanguage": "en-US"
       },
       {
         "@type": "ImageObject",
@@ -54,7 +54,7 @@ const Stories = ({ story, errorCode }) => {
         "width": "640",
         "height": "853",
         "caption": `${story.title}`,
-        "inLanguage": "pa"
+        "inLanguage": "en-US"
       },
       {
         "@type": "WebPage",
@@ -69,19 +69,19 @@ const Stories = ({ story, errorCode }) => {
         "primaryImageOfPage": {
           "@id": `${story.coverphoto}`
         },
-        "inLanguage": "pa"
+        "inLanguage": "en-US"
       },
       {
         "@type": "Person",
-        "@id": "https://www.liquorprices.in/author/divrawat2001/",
-        "name": "Divyansh Rawal",
-        "url": "https://www.liquorprices.in/author/divrawat2001/",
+        "@id": `${DOMAIN}/profile/divrawat`,
+        "name": "Divyanshu Rawat",
+        "url": `${DOMAIN}/profile/divrawat`,
         "image": {
           "@type": "ImageObject",
-          "@id": "https://secure.gravatar.com/avatar/25963693bf3ce6efc77eb7ed7d5f4228?s=96&amp;d=mm&amp;r=g",
-          "url": "https://secure.gravatar.com/avatar/25963693bf3ce6efc77eb7ed7d5f4228?s=96&amp;d=mm&amp;r=g",
-          "caption": "Divyansh Rawal",
-          "inLanguage": "pa"
+          "@id": `${DOMAIN}/author.png`,
+          "url": `${DOMAIN}/author.png`,
+          "caption": "Divyanshu Rawat",
+          "inLanguage": "en-US"
         },
         "worksFor": {
           "@id": `${DOMAIN}/#organization`
@@ -93,8 +93,8 @@ const Stories = ({ story, errorCode }) => {
         "datePublished": `${story.date}`,
         "dateModified": `${story.date}`,
         "author": {
-          "@id": "https://www.liquorprices.in/author/divrawat2001/",
-          "name": "Divyansh Rawal"
+          "@id": `${DOMAIN}/profile/divrawat`,
+          "name": "Divyanshu Rawat"
         },
         "publisher": {
           "@id": `${DOMAIN}/#organization`
@@ -102,14 +102,14 @@ const Stories = ({ story, errorCode }) => {
         "description": `${story.description} - ${APP_NAME}`,
         "@id": `${DOMAIN}/${story.slug}/#richSnippet`,
         "isPartOf": {
-          "@id": `${DOMAIN}/${story.slug}/#webpage`
+          "@id": `${DOMAIN}/web-stories/${story.slug}/#webpage`
         },
         "image": {
           "@id": `${story.coverphoto}`
         },
-        "inLanguage": "pa",
+        "inLanguage": "en-US",
         "mainEntityOfPage": {
-          "@id": `${DOMAIN}/${story.slug}/#webpage`
+          "@id": `${DOMAIN}/web-stories/${story.slug}/#webpage`
         }
       }
     ],
@@ -135,19 +135,19 @@ const Stories = ({ story, errorCode }) => {
       <meta property="og:image:secure_url" content={`${story.coverphoto}`} />
       <meta property="og:image:width" content="640" />
       <meta property="og:image:height" content="853" />
-      <meta property="og:image:alt" content="A Beauty" />
+      <meta property="og:image:alt" content={story.title} />
       <meta property="og:image:type" content="image/jpeg" />
       <link rel="canonical" href={`${DOMAIN}/web-stories/${story.slug}`} />
       <link rel="amphtml" href={`${DOMAIN}/web-stories/${story.slug}`} />
       <meta property="article:published_time" content={`${story.date}`} />
       <meta property="article:modified_time" content={`${story.date}`} />
-      <link rel="icon" href="https://www.liquorprices.in/wp-content/uploads/2023/08/cropped-logologo-32x32.png" sizes="32x32" />
-      <link rel="icon" href="https://www.liquorprices.in/wp-content/uploads/2023/08/cropped-logologo-192x192.png" sizes="192x192" />
+      <link rel="icon" href={`${DOMAIN}/logo-32x32.png`} sizes="32x32" />
+      <link rel="icon" href={`${DOMAIN}/logo-192x192.png`} sizes="192x192" />
       <link rel={`${MY_API}`} href={`${API}`} />
       <link rel="alternate" type="application/json" href={`${API}/webstories/${story.slug}`} />
-      <link rel="apple-touch-icon" href="https://www.liquorprices.in/wp-content/uploads/2023/08/cropped-logologo-180x180.png" />
-      <link rel="alternate" type="application/rss+xml" title={`${APP_NAME} - Feed`} href="https://www.liquorprices.in/feed/" />
-      <link rel="alternate" type="application/rss+xml" title={`${APP_NAME} » Stories Feed`} href="https://www.liquorprices.in/web-stories/feed/" />
+      <link rel="apple-touch-icon" href={`${DOMAIN}/logo-180x180.png`} />
+      <link rel="alternate" type="application/rss+xml" title={`${APP_NAME} - Feed`} href={`${DOMAIN}/feeds.xml`} />
+      {/* <link rel="alternate" type="application/rss+xml" title={`${APP_NAME} » Stories Feed`} href="https://www.liquorprices.in/web-stories/feed/" /> */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
     </Head>
   );
@@ -164,11 +164,11 @@ const Stories = ({ story, errorCode }) => {
       <Script custom-element="amp-story-auto-ads" src="https://cdn.ampproject.org/v0/amp-story-auto-ads-0.1.js" async />
       <Script custom-element="amp-story-auto-analytics" src="https://cdn.ampproject.org/v0/amp-story-auto-analytics-0.1.js" async/>
 
-      <amp-story standalone="" title={`${story.title}`} publisher={`${APP_NAME}`} publisher-logo-src="http://www.liquorprices.in/wp-content/uploads/2023/09/logologo.png" poster-portrait-src={`${story.coverphoto}`} >
+      <amp-story standalone="" title={`${story.title}`} publisher={`${APP_NAME}`} publisher-logo-src={`${DOMAIN}/logo-192x192.png`} poster-portrait-src={`${story.coverphoto}`} >
 
         <amp-story-page id="cover" className="myclass" auto-advance-after="4s">
           <amp-story-grid-layer template="vertical">
-            <amp-img src={`${story.coverphoto}`} layout="responsive" width="720" height="1280" />
+            <amp-img src={`${story.coverphoto}`} layout="responsive" width={story.coverphotowidth} height={story.coverphotoheight} />
           </amp-story-grid-layer>
 
           <amp-story-grid-layer template="vertical" className="bottom">
@@ -182,7 +182,7 @@ const Stories = ({ story, errorCode }) => {
          <React.Fragment key={i}>
             <amp-story-page id={`page${i}`} key={i} auto-advance-after="5s">
               <amp-story-grid-layer template="vertical">
-                <amp-img src={`${slide.image}`} layout="responsive" animate-in="fade-in" width="720" height="1280" />
+                <amp-img src={`${slide.image}`} layout="responsive" animate-in="fade-in" width={slide.width} height={slide.height} />
               </amp-story-grid-layer>
 
               <amp-story-grid-layer template="vertical" className="bottom">
@@ -258,7 +258,7 @@ const Stories = ({ story, errorCode }) => {
 
 
 export async function getStaticPaths() {
-  const slugs = await allslugs();
+  const slugs = await webstoryslugs();
 
 const excludedSlugs = ['/admin/edit-blogs'];
 const filteredSlugs = slugs.filter((slugObject) => !excludedSlugs.includes(slugObject.slug));

@@ -58,23 +58,9 @@ export const list = async (page, search, token) => {
 
 
 
-export const allslugs = async() => {
+export const webstoryslugs = async() => {
     try {
-        const response = await fetch(`${API}/allslugs`, {
-            method: 'GET'
-        });
-        return await response.json();
-    } catch (err) {
-        return console.log(err);
-    }
-};
-
-
-
-
-export const sitemap = async() => {
-    try {
-        const response = await fetch(`${API}/sitemap`, {
+        const response = await fetch(`${API}/webstory-slugs`, {
             method: 'GET'
         });
         return await response.json();

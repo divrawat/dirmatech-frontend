@@ -17,6 +17,8 @@ const CreateStory = () => {
         formData: new FormData(),
         title: '',
         coverphoto: '',
+        coverphotoheight: '',
+        coverphotowidth: '',
         description: '',
         slug: '',
         link: '',
@@ -27,7 +29,7 @@ const CreateStory = () => {
         slides: Array(7).fill({ image: '', heading: '', paragraph: '', height: '', width: '' }),
     });
 
-    const { error, success, formData, publishstory, title, coverphoto, description, slug, slides, link, lastheading, lastimage, ads } = values;
+    const { error, success, formData, publishstory, title, coverphoto, coverphotowidth, coverphotoheight, description, slug, slides, link, lastheading, lastimage, ads } = values;
     const token = getCookie('token');
 
 
@@ -85,7 +87,7 @@ const CreateStory = () => {
         createwebstory(formData, token).then(data => {
             if (data.error) { setValues({ ...values, error: data.error }); }
             else {
-                setValues({ ...values, title: '', link: '', description: '', link: '', slides: [], coverphoto: '', ads: '', slug: '', error: '', success: `A story titled "${data.title}" is created` });
+                setValues({ ...values, title: '', link: '', description: '', link: '', slides: [], coverphoto: '', coverphotowidth: '', coverphotoheight: '', ads: '', slug: '', error: '', success: `A story titled "${data.title}" is created` });
                 let storyslug = slugify(slug).toLowerCase();
                 function redirect() {
                     router.push(`/web-stories/${storyslug}`);
@@ -109,7 +111,20 @@ const CreateStory = () => {
                         {showSuccess()}
                         <button type='submit' className="px-5 py-2 rounded bg-[black] text-[15px] mb-5 font-bold tracking-wider text-white hover:opacity-50">{publishstory}</button>
 
+ 
+                        <div className='mb-2'>640w X 853h</div>
                         <div>  <input style={boxShadowStyle} className="p-[8px] text-[14px] w-[300px] mb-[25px] pl-[15px] h-[35px] outline-none rounded" placeholder='Cover Photo Link' value={coverphoto} onChange={handletitle("coverphoto")} /></div>
+
+
+
+                        <div className='flex gap-3'>
+                            <input className="p-3 w-[100px] rounded outline-none text-sm" style={boxShadowStyle} type="number" value={coverphotowidth} onChange={handletitle("coverphotowidth")} placeholder="Width" /><span className='pt-2'>px</span>
+                            <input className="p-3 w-[100px] rounded outline-none text-sm" style={boxShadowStyle} type="number" value={coverphotoheight} onChange={handletitle("coverphotoheight")} placeholder="Height" /> <span className='pt-2'>px</span>
+                        </div>
+
+
+
+
 
                         <div className="mt-[30px]">
                             <textarea style={boxShadowStyle} className='text-[14px] w-[300px] h-[150px] p-[8px] border-none outline-none pl-[15px] rounded' placeholder='Description' value={description} onChange={handletitle("description")} />
@@ -147,8 +162,8 @@ const CreateStory = () => {
                                     <textarea style={boxShadowStyle} className='text-[14px] block p-[7px] pl-[12px] h-[100px] mb-[25px] w-[80%] border-none outline-none rounded' placeholder="Paragraph" value={slide.paragraph} onChange={handleSlideChange(index, 'paragraph')} />
 
                                     <div className='flex gap-3'>
-                                        <input className="p-3 w-[100px] rounded outline-none text-sm" style={boxShadowStyle} type="number" placeholder="Height" value={slide.height} onChange={handleSlideChange(index, 'height')} /> <span className='pt-2'>px</span>
                                         <input className="p-3 w-[100px] rounded outline-none text-sm" style={boxShadowStyle} type="number" placeholder="Width" value={slide.width} onChange={handleSlideChange(index, 'width')} /><span className='pt-2'>px</span>
+                                        <input className="p-3 w-[100px] rounded outline-none text-sm" style={boxShadowStyle} type="number" placeholder="Height" value={slide.height} onChange={handleSlideChange(index, 'height')} /> <span className='pt-2'>px</span>
                                     </div>
 
                                     <div className="ml-[800px] mt-[-165px]">

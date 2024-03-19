@@ -1,39 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 
 export default class MyDocument extends Document {
@@ -47,7 +11,7 @@ export default class MyDocument extends Document {
           <style amp-custom="" dangerouslySetInnerHTML={{
             __html: `
               amp-story-page {
-                 background-image: url("/wall.jpg");
+                 background-image: url("/walls.jpg");
               }
               amp-story-grid-layer{
                 margin: auto;
@@ -111,7 +75,7 @@ export default class MyDocument extends Document {
                 align-content: center;
               }
               amp-img {
-                height: 40vh;
+                height: auto;
               }
             `
           }} />

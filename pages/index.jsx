@@ -36,9 +36,9 @@ const Index = ({ blogs }) => {
       {head()}
       <Navbar />
 
-      <div>
-        <section >
-          <div className="max-w-[1200px] flex sm:gap-[70px] gap-5 md:mt-10 mt-3 pb-5 justify-center mx-auto flex-wrap">{showAllBlogs()}</div>
+      <div className=" dark:bg-[#10141c] dark:text-[#cecdcd]">
+        <section>
+          <div className="max-w-[1200px] flex sm:gap-[70px] gap-5 md:pt-10 pt-3 pb-5 justify-center mx-auto flex-wrap">{showAllBlogs()}</div>
         </section>
       </div>
 
