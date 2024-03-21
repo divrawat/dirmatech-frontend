@@ -7,7 +7,7 @@ const SmallCard = ({ blog }) => {
         <>
             <Link href={`/${blog.slug}`}>
                 <section><img src={blog.photo} alt={blog.title} className='h-[200px] w-[350px] object-cover'/></section>
-                <section className='text-center my-3 text-2xl font-bold'> {blog.title} </section>
+                <section className='text-center my-3 text-2xl font-bold hover:underline'> {blog.title} </section>
             </Link>
             <section className='text-center px-2'>
                 {formattedDate} &nbsp; by &nbsp;
