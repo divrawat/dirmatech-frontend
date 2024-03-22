@@ -25,7 +25,6 @@ const generateXmlSitemap = (blogs) => {
   return xml;
 };
 
-const Sitemap = () => null;
 
 export async function getServerSideProps({ res }) {
   const blogs = await allblogs();
@@ -36,4 +35,5 @@ export async function getServerSideProps({ res }) {
   return { props: {} };
 }
 
-export default Sitemap;
+export default generateXmlSitemap;
+

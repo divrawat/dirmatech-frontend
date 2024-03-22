@@ -6,8 +6,8 @@ export const MY_API = "https://dirmatech-backend.vercel.app/api";
 
 
               
-//  export const API = "http://localhost:8000/api";
-//  export const DOMAIN = "http://localhost:3000";
+  // export const API = "http://localhost:8000/api";
+  // export const DOMAIN = "http://localhost:3000";
 
 
 export const APP_DESCRIPTION = 'DirmaTech';
