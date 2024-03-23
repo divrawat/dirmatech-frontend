@@ -2,7 +2,7 @@ import { feedsApi } from '@/actions/blog';
 import { DOMAIN } from '@/config';
 
 // const siteUrl = "https://example.com";
- 
+
 const generateRssItem = (post) => `
   <item>
     <title>${post.title}</title>
@@ -11,6 +11,12 @@ const generateRssItem = (post) => `
     <guid>${DOMAIN}/${post.slug}</guid>
     <dc:creator><![CDATA[${post.postedBy.name}]]></dc:creator>
     <description><![CDATA[${post.mdesc}]]></description>
+    <content:encoded><![CDATA[
+      <div>
+          <img decoding="async" src="${post.photo}" />
+      </div>
+
+
     <content:encoded><![CDATA[${post.body}]]></content:encoded>
     
   </item>
@@ -28,7 +34,7 @@ const generateRss = (posts) => `
       <generator>Next.js</generator>
 
       <image>
-      <url>${DOMAIN}/icon-192.png</url>
+      <url>${DOMAIN}/logo-192x192.png</url>
       <title>Mashoor</title>
       <link>${DOMAIN}</link>
       <width>192</width>
