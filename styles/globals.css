@@ -97,9 +97,9 @@ body{
   }
 }
 
-.postcontent p a {
+.postcontent a {
   text-decoration: none;
-  color: blue;
+  color: blue !important;
 }
 
 .postcontent p a:hover {
@@ -236,6 +236,15 @@ body{
   border: 3px solid #edf2f7;
 }
 /* ----------------------------------------------ScrollBar----------------------------------------- */
+
+
+
+
+
+
+
+
+
 
 
 
