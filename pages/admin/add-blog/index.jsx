@@ -52,29 +52,30 @@ const CreateBlogPage = () => {
     const { error, success, formData, loading, publishtext, title, mtitle, mdesc, slug, photo } = values;
     const token = getCookie('token');
 
-    const publishBlog = e => {
-        e.preventDefault();
-        setValues({ ...values, publishtext: 'Publishing...', loading: true });
-        createBlog(formData, token).then(data => {
-            if (data.error) {
-                toast.error(data.error);
-                setValues({ ...values, publishtext: 'Publish', loading: false, error: data.error });
-            } else {
-                toast.success(`A new blog titled "${data.title}" is created`);
-                setValues({ ...values, loading: false, title: '', mtitle: '', mdesc: '', slug: '', error: '', photo: '', success: `A new blog titled "${data.title}" is created` });
-                setBody('');
-                setCategories([]);
+const publishBlog = e => {
+    e.preventDefault();
 
-                let postslug = slugify(slug).toLowerCase();
-                function redirect() {
-                    Router.push(`/${postslug}`);
-                }
-                setTimeout(redirect, 200)
+    if (!token) {toast.error("Please sign in to publish the blog.");return;}
 
+    setValues({ ...values, publishtext: 'Publishing...', loading: true });
+    createBlog(formData, token).then(data => {
+        if (data.error) {
+            toast.error(data.error);
+            setValues({ ...values, publishtext: 'Publish', loading: false, error: data.error });
+        } else {
+            toast.success(`A new blog titled "${data.title}" is created`);
+            setValues({ ...values, loading: false, title: '', mtitle: '', mdesc: '', slug: '', error: '', photo: '', success: `A new blog titled "${data.title}" is created` });
+            setBody('');
+            setCategories([]);
 
+            let postslug = slugify(slug).toLowerCase();
+            function redirect() {
+                Router.push(`/${postslug}`);
             }
-        });
-    };
+            setTimeout(redirect, 500);
+        }
+    });
+};
 
     const handleChange = name => e => {
         const value = e.target.value;

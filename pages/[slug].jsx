@@ -82,7 +82,7 @@ const SingleBlogPost = ({ blog, errorCode }) => {
           "url": `${DOMAIN}/profile/${blog.postedBy.username}`
         },  
         "publisher": {
-          "@type": "Organization",
+          "@type": "Person",
           "name": {APP_NAME},
           "logo": {
             "@type": "ImageObject",

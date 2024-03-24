@@ -55,7 +55,7 @@ export const signout = async next => {
 export const setCookie = (key, value) => {
     if (typeof window !== 'undefined') {
         cookie.set(key, value, {
-            expires: 1
+            expires: 10
         });
     }
 };

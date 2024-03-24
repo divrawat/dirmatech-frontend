@@ -30,12 +30,12 @@ body{
   height: 100% !important;
 }
 
-.postcontent ul{
+.postcontent ul, .se-wrapper ol{
   margin-bottom: 40px;
   margin-top: 20px;
   list-style: disc;
 }
-.postcontent ol{
+.postcontent ol, .se-wrapper ol{
   margin-bottom: 40px;
   margin-top: 20px;
   list-style: decimal;
@@ -66,15 +66,14 @@ body{
   }
 }
 
-.postcontent p,
-.postcontent p span {
+.postcontent p, .postcontent p span, .se-wrapper p, .se-wrapper p span{
   font-size: 16.5px !important;
   word-spacing: 1.7px;
   line-height: 35px;
   margin-bottom: 50px;
 }
 
-.postcontent li {
+.postcontent li, .se-wrapper li {
   font-size: 16px !important;
   margin-left: 30px;
   word-spacing: 1.5px;
@@ -117,13 +116,14 @@ body{
   font-size: 33px;
 }
 
-.postcontent h2, .postcontent h2 span {
+.postcontent h2, .postcontent h2 span, .se-wrapper h2, .se-wrapper h2 span {
   font-size: 30px;
   word-spacing: 1.7px;
 }
 
-.postcontent h3 {
+.postcontent h3, .postcontent h3 span, .se-wrapper h3, .se-wrapper h3 span {
   margin-top: 10px;
+  margin-bottom: 15px;
   font-size: 21px;
   font-weight: 700;
 }
@@ -167,6 +167,7 @@ body{
 
 
 .dark .postcontent h2 {color: whitesmoke;}
+
 
 
 

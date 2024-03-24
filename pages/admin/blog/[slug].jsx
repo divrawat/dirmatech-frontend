@@ -43,6 +43,7 @@ const EditBlogPage = () => {
 
     const editBlog = e => {
         e.preventDefault();
+        if (!token) {toast.error("Please sign in to publish the blog.");return; }
         formData.set('body', body);
         setValues({ ...values, updatetext: 'Updating....', loading: true });
         updateBlog(formData, token, router.query.slug).then(data => {
