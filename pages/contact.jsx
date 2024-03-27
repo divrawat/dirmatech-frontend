@@ -10,7 +10,7 @@ const Contact = () => {
 
     const head = () => (
         <Head>
-            <title>Contact</title>
+            <title>{`Contact - ${APP_NAME}`}</title>
             <meta name="description" content={description} />
             <meta name="robots" content="follow, index, noarchive, max-snippet:-1, max-video-preview:-1, max-image-preview:large" />
             <link rel="canonical" href={`${DOMAIN}/contact`} />

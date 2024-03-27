@@ -101,7 +101,7 @@ const SingleBlogPost = ({ blog, errorCode }) => {
             <meta property="og:title" content={`${blog.mtitle}| ${APP_NAME}`} />
             <meta property="og:description" content={blog.mdesc} />
             <meta property="og:type" content="webiste" />
-            <meta name="robots" content="index, follow" />
+            <meta name="robots" content="follow, index, noarchive, max-snippet:-1, max-video-preview:-1, max-image-preview:large" />
             <meta property="og:url" content={`${DOMAIN}/${blog.slug}`} />
             <meta property="og:site_name" content={`${APP_NAME}`} />
             <meta property="og:image" content={blog.photo} />

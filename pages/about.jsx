@@ -11,13 +11,13 @@ const About = () => {
 
     const head = () => (
         <Head>
-            <title>About</title>
+            <title>{`About - ${APP_NAME}`}</title>
             <meta name="description" content={description} />
             <meta name="robots" content="follow, index, noarchive, max-snippet:-1, max-video-preview:-1, max-image-preview:large" />
             <link rel="canonical" href={`${DOMAIN}/about`} />
             <meta property="og:locale" content="en_US" />
             <meta property="og:type" content={APP_NAME} />
-            <meta property="og:title" content={`${APP_NAME}`} />
+            <meta property="og:title" content={`About - ${APP_NAME}`} />
             <meta property="og:description" content={description} />
             <meta property="og:url" content={APP_NAME} />
             <meta property="og:site_name" content={APP_NAME} />
